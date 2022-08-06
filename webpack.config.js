@@ -4,6 +4,10 @@ const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
+let isDev = process.env.NODE_ENV === 'development';
+
+console.log(`–––> Inited as ${isDev}`);
+
 module.exports = {
     /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
     mode: 'development',
@@ -39,7 +43,7 @@ module.exports = {
             ]
         }),
         new MiniCssExtractPlugin({
-            filename: '[name].[contenthash].css'
+            filename: isDev ? '[name].css' : '[name].[contenthash].css'
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -50,7 +54,13 @@ module.exports = {
         rules: [
             {
                 test: /\.css$/,
-                use: [MiniCssExtractPlugin.loader, 'css-loader']
+                use: [
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {}
+                    },
+                    'css-loader'
+                ]
             },
             {
                 test: /\.(jpe?g|png)$/,
@@ -70,7 +80,7 @@ module.exports = {
     devServer: {
         port: 3333,
         /* надо добавить что бы заработал --live-reload */
-        hot: false,
+        hot: isDev,
         /* или указать путь до файлов для слежения */
 //        watchFiles: [
 //            'src/**/*'
