@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
     /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
@@ -28,6 +29,14 @@ module.exports = {
     },
     plugins: [
         new CleanWebpackPlugin(),
+        new CopyWebpackPlugin({
+            patterns: [
+                {
+                    from: path.resolve(__dirname, 'src/favicon-32x32.png'),
+                    to: path.resolve(__dirname, 'build')
+                }
+            ]
+        }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
             template: './src/index.tmpl.html'
