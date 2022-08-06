@@ -2,11 +2,6 @@ html {
     font-family: "Al Bayan", monospace;
     }
 
-html, body {
-    margin: 0;
-    padding: 0;
-    }
-
 .poster {
     background-image: url('/src/res/img/nolan.png');
     background-position: 50% 50%;

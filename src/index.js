@@ -1,3 +1,4 @@
+import './res/css/normalize.styl';
 import './res/css/main.css';
 
 import $ from 'jquery';

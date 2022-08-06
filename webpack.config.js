@@ -86,6 +86,20 @@ module.exports = {
                 ]
             },
             {
+                test: /\.styl$/,
+                use: [
+                    /* extract styles to separate .css file */
+                    {
+                        loader: MiniCssExtractPlugin.loader,
+                        options: {}
+                    },
+                    /* import .css as JS object at import */
+                    'css-loader',
+                    /* .styl -> .css */
+                    'stylus-loader'
+                ]
+            },
+            {
                 test: /\.(jpe?g|png)$/,
                 /* в webpack 5 это встроенный модуль, https://webpack.js.org/guides/asset-modules/ */
                 type: 'asset/resource'
