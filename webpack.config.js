@@ -2,11 +2,35 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
+const TerserWebpackPlugin = require('terser-webpack-plugin')
+const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
+
 
 let isDev = process.env.NODE_ENV === 'development';
+let isProd = !isDev;
 
 console.log(`–––> Inited as ${isDev}`);
+
+function getOptimization() {
+    let config = {
+        splitChunks: {
+            chunks: 'all'
+        },
+    };
+
+    if (isProd) {
+        config.minimize = true;
+        config.minimizer = [
+            '...',
+            new CssMinimizerWebpackPlugin(),
+            /* в Webpack 5 идет из коробки, но все еще нужно выкачиать для доп. настройки */
+            new TerserWebpackPlugin()
+        ]
+    }
+
+    return config;
+}
 
 module.exports = {
     /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
@@ -19,11 +43,7 @@ module.exports = {
         filename: '[name].[contenthash].js',
         path: path.resolve(__dirname, 'build')
     },
-    optimization: {
-        splitChunks: {
-            chunks: 'all'
-        }
-    },
+    optimization: getOptimization(),
     resolve: {
         alias: {
             '@': path.resolve(__dirname, 'src'),
