@@ -12,6 +12,10 @@ let isProd = !isDev;
 
 console.log(`–––> Inited as ${isDev}`);
 
+function filename(ext) {
+    return `[name]${isProd ? '.[contenthash]' : ''}.${ext}`
+}
+
 function getOptimization() {
     let config = {
         splitChunks: {
@@ -40,7 +44,7 @@ module.exports = {
         lib: './src/stat.js'
     },
     output: {
-        filename: '[name].[contenthash].js',
+        filename: filename('js'),
         path: path.resolve(__dirname, 'build')
     },
     optimization: getOptimization(),
@@ -63,7 +67,7 @@ module.exports = {
             ]
         }),
         new MiniCssExtractPlugin({
-            filename: isDev ? '[name].css' : '[name].[contenthash].css'
+            filename: filename('css')
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
@@ -116,8 +120,8 @@ module.exports = {
     },
     devServer: {
         port: 3333,
-        /* надо добавить что бы заработал --live-reload */
-        hot: isDev,
+        /* надо установить false что бы заработал --live-reload */
+        hot: false,
         /* или указать путь до файлов для слежения */
 //        watchFiles: [
 //            'src/**/*'
