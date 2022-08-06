@@ -47,7 +47,10 @@ module.exports = {
         }),
         new HtmlWebpackPlugin({
             filename: 'index.html',
-            template: './src/index.tmpl.html'
+            template: './src/index.tmpl.html',
+            minify: {
+                collapseWhitespace: !isDev
+            }
         })
     ],
     module: {
