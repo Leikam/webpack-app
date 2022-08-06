@@ -55,6 +55,15 @@ module.exports = {
         ]
     },
     devServer: {
-        port: 3333
+        port: 3333,
+        /* надо добавить что бы заработал --live-reload */
+        hot: false,
+        /* или указать путь до файлов для слежения */
+//        watchFiles: [
+//            'src/**/*'
+//        ],
+        client: {
+            progress: true
+        }
     }
 }
