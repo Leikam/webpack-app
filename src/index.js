@@ -22,3 +22,10 @@ console.log(`–––> import XML`, xml);
 console.log(`–––> import CSV`, csv);
 
 
+if (module.hot) {
+    module.hot.accept((err, meta) => {
+        console.error('HMR error', meta, err);
+    })
+}
+
+

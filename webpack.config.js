@@ -18,6 +18,8 @@ function filename(ext) {
 
 function getOptimization() {
     let config = {
+        /* важно для работы HMR: что бы рантайм и кеш был один */
+        runtimeChunk: 'single',
         splitChunks: {
             chunks: 'all'
         },
@@ -121,13 +123,11 @@ module.exports = {
     devServer: {
         port: 3333,
         /* надо установить false что бы заработал --live-reload */
-        hot: false,
+        hot: true,
+
         /* или указать путь до файлов для слежения */
 //        watchFiles: [
 //            'src/**/*'
 //        ],
-        client: {
-            progress: true
-        }
     }
 }
