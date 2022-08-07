@@ -55,7 +55,7 @@ module.exports = {
             '@': path.resolve(__dirname, 'src'),
         },
         extensions: [
-            '.js'
+            '.js', '.ts'
         ]
     },
     plugins: [
@@ -112,6 +112,19 @@ module.exports = {
                     loader: "babel-loader",
                     options: {
                         presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: [
+                            '@babel/preset-env',
+                            '@babel/preset-typescript'
+                        ]
                     }
                 }
             },

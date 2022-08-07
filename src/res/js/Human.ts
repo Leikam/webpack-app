@@ -1,20 +1,20 @@
 export class Human {
-    constructor(name, age) {
-        this.name = name;
-        this.age = age;
-    }
+    constructor(
+        public name: string,
+        public age: number
+    ) {}
 
-    getName() {
+    getName(): string {
         console.log('--> Мое имя', this.name);
         return this.name;
     }
 
-    getAge() {
+    getAge(): number {
         console.log('--> Мой возраст', this.name);
         return this.age;
     }
 
-    async getInfo() {
+    async getInfo(): Promise<any> {
         return { loading: true }
     }
 }

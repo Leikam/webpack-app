@@ -12,7 +12,9 @@ import '@/res/js/babelTest';
 
 console.log(`–––> $`, $('html'));
 
-console.log(`–––> human`, new Human('Dim', 33));
+let human = new Human('Dim', 33);
+console.log(`–––> human.ts`, human);
+console.log(`–––> human.ts getName()`, human.getName());
 
 console.log(`–––> import img ${img}`);
 
