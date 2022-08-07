@@ -13,6 +13,10 @@ import csv from '@/res/bin/test.csv';
 import { Human } from '@/res/js/Human';
 import '@/res/js/babelTest';
 
+
+// test eslint warn
+let unused = 42;
+
 console.log(`–––> $`, $('html'));
 
 let human = new Human('Dim', 33);
@@ -50,6 +54,7 @@ const App = () => {
 createRoot(document.getElementById('app'))
     .render(<App />);
 
+/* eslint-env node */
 if (module.hot) {
     module.hot.accept((err, meta) => {
         console.error('HMR error', meta, err);

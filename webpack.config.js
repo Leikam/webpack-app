@@ -5,12 +5,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
+const EslintWebpackPlugin = require('eslint-webpack-plugin');
 
 
 let isDev = process.env.NODE_ENV === 'development';
 let isProd = !isDev;
 
-console.log(`–––> development mode: ${isDev}`);
+console.log(`–––> development mode: ${isDev}\n`);
+
 
 module.exports = {
     /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
@@ -52,7 +54,12 @@ module.exports = {
             minify: {
                 collapseWhitespace: !isDev
             }
-        })
+        }),
+        isDev && new EslintWebpackPlugin(
+            {
+                extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx']
+            }
+        )
     ],
     module: {
         rules: [
@@ -83,10 +90,7 @@ module.exports = {
             {
                 test: /\.m?js$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: getBabelOptions()
-                }
+                use: getJsLoaders()
             },
             {
                 test: /\.ts$/,
@@ -135,6 +139,15 @@ module.exports = {
 
 function filename(ext) {
     return `[name]${isProd ? '.[contenthash]' : ''}.${ext}`
+}
+
+function getJsLoaders() {
+    return [
+        {
+            loader: 'babel-loader',
+            options: getBabelOptions()
+        },
+    ];
 }
 
 function getOptimization() {

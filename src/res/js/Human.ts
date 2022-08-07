@@ -14,7 +14,7 @@ export class Human {
         return this.age;
     }
 
-    async getInfo(): Promise<any> {
+    async getInfo(): Promise<unknown> {
         return { loading: true }
     }
 }
