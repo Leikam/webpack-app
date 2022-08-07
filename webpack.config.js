@@ -12,37 +12,11 @@ let isProd = !isDev;
 
 console.log(`–––> Inited as ${isDev}`);
 
-function filename(ext) {
-    return `[name]${isProd ? '.[contenthash]' : ''}.${ext}`
-}
-
-function getOptimization() {
-    let config = {
-        /* важно для работы HMR: что бы рантайм и кеш был один иначе HMR упадет с ошибкой при патче */
-        runtimeChunk: 'single',
-        splitChunks: {
-            chunks: 'all'
-        },
-    };
-
-    if (isProd) {
-        config.minimize = true;
-        config.minimizer = [
-            '...',
-            new CssMinimizerWebpackPlugin(),
-            /* в Webpack 5 идет из коробки, но все еще нужно выкачиать для доп. настройки */
-            new TerserWebpackPlugin()
-        ]
-    }
-
-    return config;
-}
-
 module.exports = {
     /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
     mode: 'development',
     entry: {
-        common: './src/index.js',
+        common: './src/index.jsx',
         lib: './src/stat.js'
     },
     output: {
@@ -55,7 +29,7 @@ module.exports = {
             '@': path.resolve(__dirname, 'src'),
         },
         extensions: [
-            '.js', '.ts'
+            '.js', '.jsx', '.ts', '.tsx'
         ]
     },
     plugins: [
@@ -110,9 +84,7 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: ['@babel/preset-env']
-                    }
+                    options: getBabelOptions()
                 }
             },
             {
@@ -120,12 +92,19 @@ module.exports = {
                 exclude: /node_modules/,
                 use: {
                     loader: "babel-loader",
-                    options: {
-                        presets: [
-                            '@babel/preset-env',
-                            '@babel/preset-typescript'
-                        ]
-                    }
+                    options: getBabelOptions(
+                        '@babel/preset-typescript'
+                    )
+                }
+            },
+            {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: getBabelOptions(
+                        '@babel/preset-react'
+                    )
                 }
             },
             {
@@ -151,4 +130,39 @@ module.exports = {
             'src/**/*.html'
         ],
     }
+}
+
+function filename(ext) {
+    return `[name]${isProd ? '.[contenthash]' : ''}.${ext}`
+}
+
+function getOptimization() {
+    let config = {
+        /* важно для работы HMR: что бы рантайм и кеш был один иначе HMR упадет с ошибкой при патче */
+        runtimeChunk: 'single',
+        splitChunks: {
+            chunks: 'all'
+        },
+    };
+
+    if (isProd) {
+        config.minimize = true;
+        config.minimizer = [
+            '...',
+            new CssMinimizerWebpackPlugin(),
+            /* в Webpack 5 идет из коробки, но все еще нужно выкачиать для доп. настройки */
+            new TerserWebpackPlugin()
+        ]
+    }
+
+    return config;
+}
+
+function getBabelOptions(...presets) {
+    return {
+        presets: [
+            '@babel/preset-env',
+            ...presets
+        ]
+    };
 }
