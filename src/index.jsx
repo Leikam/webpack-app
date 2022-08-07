@@ -3,7 +3,7 @@ import './res/css/main.css';
 
 import $ from 'jquery';
 import React from 'react';
-import {render} from 'react-dom';
+import {createRoot} from 'react-dom/client';
 
 
 import json from '@/res/bin/test.json';
@@ -46,8 +46,9 @@ const App = () => {
         </div>
     );
 }
-render(<App />, document.getElementById('app'));
 
+createRoot(document.getElementById('app'))
+    .render(<App />);
 
 if (module.hot) {
     module.hot.accept((err, meta) => {
