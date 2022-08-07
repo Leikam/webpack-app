@@ -10,7 +10,7 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 let isDev = process.env.NODE_ENV === 'development';
 let isProd = !isDev;
 
-console.log(`–––> Inited as ${isDev}`);
+console.log(`–––> development mode: ${isDev}`);
 
 module.exports = {
     /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
@@ -23,6 +23,7 @@ module.exports = {
         filename: filename('js'),
         path: path.resolve(__dirname, 'build')
     },
+    devtool: isDev && 'source-map',
     optimization: getOptimization(),
     resolve: {
         alias: {
