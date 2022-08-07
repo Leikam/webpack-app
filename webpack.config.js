@@ -18,7 +18,7 @@ function filename(ext) {
 
 function getOptimization() {
     let config = {
-        /* важно для работы HMR: что бы рантайм и кеш был один */
+        /* важно для работы HMR: что бы рантайм и кеш был один иначе HMR упадет с ошибкой при патче */
         runtimeChunk: 'single',
         splitChunks: {
             chunks: 'all'
@@ -132,12 +132,10 @@ module.exports = {
     },
     devServer: {
         port: 3333,
-        /* надо установить false что бы заработал --live-reload */
         hot: true,
-
-        /* или указать путь до файлов для слежения */
-//        watchFiles: [
-//            'src/**/*'
-//        ],
+        /* для статики отдельно используем Live reload */
+        watchFiles: [
+            'src/**/*.html'
+        ],
     }
 }
