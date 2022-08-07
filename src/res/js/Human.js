@@ -13,4 +13,8 @@ export class Human {
         console.log('--> Мой возраст', this.name);
         return this.age;
     }
+
+    async getInfo() {
+        return { loading: true }
+    }
 }

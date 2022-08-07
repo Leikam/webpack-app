@@ -8,6 +8,7 @@ import img from '@/res/img/nolan.png';
 import xml from '@/res/bin/test.xml';
 import csv from '@/res/bin/test.csv';
 import { Human } from '@/res/js/Human';
+import '@/res/js/babelTest';
 
 console.log(`–––> $`, $('html'));
 

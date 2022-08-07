@@ -106,6 +106,16 @@ module.exports = {
                 ]
             },
             {
+                test: /\.m?js$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ['@babel/preset-env']
+                    }
+                }
+            },
+            {
                 test: /\.(jpe?g|png)$/,
                 /* в webpack 5 это встроенный модуль, https://webpack.js.org/guides/asset-modules/ */
                 type: 'asset/resource'
