@@ -6,13 +6,31 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const TerserWebpackPlugin = require('terser-webpack-plugin')
 const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
-
+const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 let isDev = process.env.NODE_ENV === 'development';
 let isProd = !isDev;
 
 console.log(`–––> development mode: ${isDev}\n`);
 
+let devPlugins = [];
+if (isDev) {
+    devPlugins = [
+        new EslintWebpackPlugin(
+            {
+                extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx']
+            }
+        ),
+    ]
+}
+
+let prodPlugins = [];
+if (isProd) {
+    /* еще ничего нет */
+    prodPlugins = [
+        // new WebpackBundleAnalyzer()
+    ];
+}
 
 module.exports = {
     /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
@@ -55,11 +73,8 @@ module.exports = {
                 collapseWhitespace: !isDev
             }
         }),
-        isDev && new EslintWebpackPlugin(
-            {
-                extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx']
-            }
-        )
+        ...devPlugins,
+        ...prodPlugins
     ],
     module: {
         rules: [
