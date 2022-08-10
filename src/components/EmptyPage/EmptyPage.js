@@ -6,16 +6,17 @@ export function EmptyPage() {
         <div className='wrapper'>
             <div className="form">
                 <label>
-                    <input type="text"/> - имя
+                    <input type="text" placeholder='имя'/>
                 </label>
-                <br/>
                 <label>
-                    <input type="text"/> - пароль
+                    <input type="text" placeholder='пароль' />
                 </label>
                 <br/>
                 <button>захади дорогой</button>
             </div>
-            <div className="promo"></div>
+            <div className="promo">
+                <div className="promo_image"></div>
+            </div>
         </div>
     );
 }
