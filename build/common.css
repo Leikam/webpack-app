@@ -1,6 +1,7 @@
 /*!************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js!./node_modules/stylus-loader/dist/cjs.js!./src/components/EmptyPage/EmptyPage.styl ***!
   \************************************************************************************************************************************/
+/* вычисляем соотношение на основе формы – в такой формуле в режиме максимального экрана 2 объекта - форма и промо будут равны*/
 body:before,
 body:after {
   content: '';
@@ -50,15 +51,15 @@ body:after {
   display: flex;
   align-items: center;
 /* что бы наложить 2 ограничения, например max-width: 40% и max-width: 500px - надо сделать обертку */
-  min-width: 300px;
-  max-width: 400px;
+  min-width: 400px;
+  max-width: 600px;
   background: #e7e7e7;
 }
 .promo_image {
   width: 100%;
   padding-bottom: 62.5%;
   background-image: url(c0a4fb0e9e2c1c20ec3b.png);
-  background-position: 0% 50%;
+  background-position: 0 50%;
   background-size: contain;
   background-repeat: no-repeat;
   background-color: rgba(255,182,193,0.52);
@@ -68,7 +69,15 @@ body:after {
     display: none;
   }
 }
-@media (max-width: 563px) {
+@media (max-width: 423px) {
+  .promo {
+    min-width: 100%;
+  }
+}
+@media (max-width: 663px) {
+  .promo {
+    max-width: 400px;
+  }
   .promo_image {
     background-position: 50% 50%;
   }

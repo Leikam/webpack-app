@@ -1,13 +1,14 @@
-$coef = 250/400;
 $wrapper_padding = 12px;
-
 
 $form_minWidth = 240px;
 $form_minHeight = 250px;
 $form_maxWidth = 400px;
 
-$promo_minWidth = 300px;
-$promo_maxWidth = 400px;
+/* вычисляем соотношение на основе формы – в такой формуле в режиме максимального экрана 2 объекта - форма и промо будут равны*/
+$aspect = percentage($form_minHeight/$form_maxWidth);
+
+$promo_minWidth = 400px;
+$promo_maxWidth = 600px;
 
 body:before,
 body:after {
@@ -63,7 +64,6 @@ body:after {
 	display: flex;
 	align-items: center;
 	/* что бы наложить 2 ограничения, например max-width: 40% и max-width: 500px - надо сделать обертку */
-	//max-width: 50%;
 	min-width: $promo_minWidth;
 	max-width: $promo_maxWidth;
 	background: #e7e7e7;
@@ -71,9 +71,9 @@ body:after {
 
 	.promo_image {
 		width: 100%;
-		padding-bottom: ($coef * 100)%;
+		padding-bottom: $aspect;
 		background-image: url('/src/res/img/nolan.png');
-		background-position: 0% 50%;
+		background-position: 0 50%;
 		background-size: contain;
 		background-repeat: no-repeat;
 		background-color: rgba(255, 182, 193, 0.52);
@@ -85,7 +85,16 @@ body:after {
 	}
 }
 
+@media (max-width: $promo_minWidth + $wrapper_padding * 2 - 1) {
+	.promo {
+		min-width: 100%;
+	}
+}
+
 @media (max-width: $promo_minWidth + $form_minWidth + $wrapper_padding * 2 - 1) {
+	.promo {
+		max-width: $form_maxWidth;
+	}
 	.promo_image {
 		background-position: 50% 50%;
 	}
