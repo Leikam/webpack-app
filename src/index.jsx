@@ -1,17 +1,17 @@
-import './res/css/index.styl';
-import './res/css/main.css';
-
-import $ from 'jquery';
-import React, { useEffect, useLayoutEffect, useState } from 'react';
-import {createRoot} from 'react-dom/client';
-
+import { EmptyPage } from '@/components/EmptyPage/EmptyPage.js';
+import csv from '@/res/bin/test.csv';
 
 import json from '@/res/bin/test.json';
-import img from '@/res/img/nolan.png';
 import xml from '@/res/bin/test.xml';
-import csv from '@/res/bin/test.csv';
-import { Human } from '@/res/js/Human';
+import img from '@/res/img/nolan.png';
 import '@/res/js/babelTest';
+import { Human } from '@/res/js/Human';
+
+import $ from 'jquery';
+import React, { useLayoutEffect, useState } from 'react';
+import { createRoot } from 'react-dom/client';
+import '@/res/css/index.styl';
+import '@/res/css/main.css';
 
 
 // test eslint warn
@@ -80,7 +80,8 @@ const App = () => {
 }
 
 createRoot(document.getElementById('app'))
-    .render(<App />);
+//    .render(<App />);
+    .render(<EmptyPage />)
 
 /* eslint-env node */
 if (module.hot) {
