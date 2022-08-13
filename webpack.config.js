@@ -145,6 +145,7 @@ module.exports = {
     devServer: {
         port: 3333,
         hot: true,
+        historyApiFallback: true,
         /* для статики отдельно используем Live reload */
         watchFiles: [
             'src/**/*.html'
