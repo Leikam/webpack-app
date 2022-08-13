@@ -324,13 +324,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-console.log("\u2013\u2013\u2013> window.remoteBaseUrl", webpack-app);
+console.log("\u2013\u2013\u2013> window.remoteBaseUrl", "webpack-app");
 (0,react_dom_client__WEBPACK_IMPORTED_MODULE_6__.createRoot)(document.getElementById('app')).render(
 /*#__PURE__*/
 
 /* basename for github pages */
 react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
-  basename: webpack-app
+  basename: "webpack-app"
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
   path: "/",
   element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(_projects_App_js__WEBPACK_IMPORTED_MODULE_0__["default"], null)
