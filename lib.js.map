@@ -1,0 +1,1 @@
+{"version":3,"file":"lib.js","mappings":";;;;;;;;;;;;AAAA;AAEAC,OAAO,CAACC,GAAR;AACAD,OAAO,CAACC,GAAR,8BAA0BF,6CAAC,CAAC,UAAD,CAA3B","sources":["webpack://webpack-app/./src/stat.js"],"sourcesContent":["import $ from 'jquery';\n\nconsole.log(`–––> statistics`);\nconsole.log(`–––> $ doc`, $('document'));"],"names":["$","console","log"],"sourceRoot":""}
