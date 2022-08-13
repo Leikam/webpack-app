@@ -8,17 +8,17 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _res_bin_test_csv__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/res/bin/test.csv */ "./src/res/bin/test.csv");
+/* harmony import */ var _res_bin_test_csv__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @res/bin/test.csv */ "./src/res/bin/test.csv");
 /* harmony import */ var _res_bin_test_csv__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_res_bin_test_csv__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _res_bin_test_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/res/bin/test.json */ "./src/res/bin/test.json");
-/* harmony import */ var _res_bin_test_xml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/res/bin/test.xml */ "./src/res/bin/test.xml");
+/* harmony import */ var _res_bin_test_json__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @res/bin/test.json */ "./src/res/bin/test.json");
+/* harmony import */ var _res_bin_test_xml__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @res/bin/test.xml */ "./src/res/bin/test.xml");
 /* harmony import */ var _res_bin_test_xml__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_res_bin_test_xml__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _res_css_index_styl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/res/css/index.styl */ "./src/res/css/index.styl");
-/* harmony import */ var _res_css_main_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/res/css/main.css */ "./src/res/css/main.css");
-/* harmony import */ var _res_img_nolan_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/res/img/nolan.png */ "./src/res/img/nolan.png");
-/* harmony import */ var _res_js_babelTest__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/res/js/babelTest */ "./src/res/js/babelTest.js");
+/* harmony import */ var _res_css_index_styl__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @res/css/index.styl */ "./src/res/css/index.styl");
+/* harmony import */ var _res_css_main_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @res/css/main.css */ "./src/res/css/main.css");
+/* harmony import */ var _res_img_nolan_png__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @res/img/nolan.png */ "./src/res/img/nolan.png");
+/* harmony import */ var _res_js_babelTest__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @res/js/babelTest */ "./src/res/js/babelTest.js");
 /* harmony import */ var _res_js_babelTest__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(_res_js_babelTest__WEBPACK_IMPORTED_MODULE_6__);
-/* harmony import */ var _res_js_Human__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/res/js/Human */ "./src/res/js/Human.ts");
+/* harmony import */ var _res_js_Human__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @res/js/Human */ "./src/res/js/Human.ts");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_8__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
@@ -304,11 +304,11 @@ var Human = /*#__PURE__*/function () {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _projects_App__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/projects/App */ "./src/projects/App.js");
-/* harmony import */ var _projects_landing_Landing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/projects/landing/Landing */ "./src/projects/landing/Landing.js");
-/* harmony import */ var _res_css_index_styl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/res/css/index.styl */ "./src/res/css/index.styl");
-/* harmony import */ var _res_css_main_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/res/css/main.css */ "./src/res/css/main.css");
-/* harmony import */ var _res_js_babelTest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/res/js/babelTest */ "./src/res/js/babelTest.js");
+/* harmony import */ var _projects_App_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projects/App.js */ "./src/projects/App.js");
+/* harmony import */ var _projects_landing_Landing__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./projects/landing/Landing */ "./src/projects/landing/Landing.js");
+/* harmony import */ var _res_css_index_styl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @res/css/index.styl */ "./src/res/css/index.styl");
+/* harmony import */ var _res_css_main_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @res/css/main.css */ "./src/res/css/main.css");
+/* harmony import */ var _res_js_babelTest__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @res/js/babelTest */ "./src/res/js/babelTest.js");
 /* harmony import */ var _res_js_babelTest__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_res_js_babelTest__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_5__);
@@ -323,9 +323,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-(0,react_dom_client__WEBPACK_IMPORTED_MODULE_6__.createRoot)(document.getElementById('app')).render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
+(0,react_dom_client__WEBPACK_IMPORTED_MODULE_6__.createRoot)(document.getElementById('app')).render(
+/*#__PURE__*/
+
+/* basename fro github pages */
+react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
+  basename: "webpack-app"
+}, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
   path: "/",
-  element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(_projects_App__WEBPACK_IMPORTED_MODULE_0__["default"], null)
+  element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(_projects_App_js__WEBPACK_IMPORTED_MODULE_0__["default"], null)
 }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
   path: "/landing",
   element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(_projects_landing_Landing__WEBPACK_IMPORTED_MODULE_1__.Landing, null)
