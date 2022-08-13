@@ -47,7 +47,7 @@ module.exports = {
     optimization: getOptimization(),
     resolve: {
         alias: {
-            '@': path.resolve(__dirname, 'src'),
+            '@res': path.resolve(__dirname, 'src/res'),
         },
         extensions: [
             '.js', '.jsx', '.ts', '.tsx'

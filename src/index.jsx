@@ -1,8 +1,8 @@
-import App from '@/projects/App';
-import { Landing } from '@/projects/landing/Landing';
-import '@/res/css/index.styl';
-import '@/res/css/main.css';
-import '@/res/js/babelTest';
+import App from './projects/App.js';
+import { Landing } from './projects/landing/Landing';
+import '@res/css/index.styl';
+import '@res/css/main.css';
+import '@res/js/babelTest';
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';

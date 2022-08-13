@@ -1,12 +1,12 @@
-import csv from '@/res/bin/test.csv';
+import csv from '@res/bin/test.csv';
 
-import json from '@/res/bin/test.json';
-import xml from '@/res/bin/test.xml';
-import '@/res/css/index.styl';
-import '@/res/css/main.css';
-import img from '@/res/img/nolan.png';
-import '@/res/js/babelTest';
-import { Human } from '@/res/js/Human';
+import json from '@res/bin/test.json';
+import xml from '@res/bin/test.xml';
+import '@res/css/index.styl';
+import '@res/css/main.css';
+import img from '@res/img/nolan.png';
+import '@res/js/babelTest';
+import { Human } from '@res/js/Human';
 
 import $ from 'jquery';
 import React, { useLayoutEffect, useState } from 'react';
