@@ -6,17 +6,16 @@
   "main": "./src/index.js",
   "private": true,
   "scripts": {
-    "build": "cross-env NODE_ENV=production webpack",
-    "build:dev": "cross-env NODE_ENV=development webpack",
-    "watch": "cross-env NODE_ENV=development webpack -w",
-    "start": "cross-env NODE_ENV=development webpack-dev-server --mode development --open --live-reload",
+    "build": "webpack",
+    "build:dev": "webpack --env NODE_ENV=development ",
+    "watch": "webpack -w --env NODE_ENV=development",
+    "start": "webpack-dev-server --env NODE_ENV=development --mode development --open --live-reload",
     "eslint": "eslint",
-
     "webpack": "webpack",
     "webpack:json": "webpack --profile --json=webpack.stats.json",
     "webpack:analyze": "webpack-bundle-analyzer -p 8001 webpack.stats.json",
-
     "gh-pages": "gh-pages",
+    "predeploy": "npm run build:dev --env remoteBaseUrl=webpack-app",
     "deploy": "gh-pages -d build"
   },
   "author": "Dimitry",
@@ -34,7 +33,6 @@
     "babel-loader": "^8.2.5",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^11.0.0",
-    "cross-env": "^7.0.3",
     "css-loader": "^6.7.1",
     "css-minimizer-webpack-plugin": "^4.0.0",
     "csv-loader": "^3.0.5",

@@ -1,3 +1,5 @@
+/*global $BASE_URL*/
+
 import App from './projects/App.js';
 import { Landing } from './projects/landing/Landing';
 import '@res/css/index.styl';
@@ -9,7 +11,8 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 createRoot(document.getElementById('app'))
     .render(
-        <BrowserRouter>
+        /* basename for github pages */
+        <BrowserRouter basename={$BASE_URL}>
             <Routes>
                 <Route path="/" element={<App />} />
                 <Route path="/landing" element={<Landing />} />

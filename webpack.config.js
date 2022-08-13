@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
@@ -8,148 +9,157 @@ const CssMinimizerWebpackPlugin = require('css-minimizer-webpack-plugin')
 const EslintWebpackPlugin = require('eslint-webpack-plugin');
 const WebpackBundleAnalyzer = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-let isDev = process.env.NODE_ENV === 'development';
-let isProd = !isDev;
+let isDev;
+let isProd;
 
-console.log(`–––> development mode: ${isDev}\n`);
+module.exports = (env) => {
+    isDev = env.NODE_ENV === 'development';
+    isProd = !isDev;
 
-let devPlugins = [];
-if (isDev) {
-    devPlugins = [
-        new EslintWebpackPlugin(
-            {
-                extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx']
-            }
-        ),
-    ]
-}
+    console.log(`–––> Environment: `, env, '\n');
+    console.log(`–––> development mode: ${isDev}\n`);
 
-let prodPlugins = [];
-if (isProd) {
-    /* еще ничего нет */
-    prodPlugins = [
-        // new WebpackBundleAnalyzer()
-    ];
-}
-
-module.exports = {
-    /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
-    mode: 'development',
-    entry: {
-        common: './src/index.jsx',
-        lib: './src/stat.js'
-    },
-    output: {
-        filename: filename('js'),
-        path: path.resolve(__dirname, 'build')
-    },
-    devtool: isDev && 'source-map',
-    optimization: getOptimization(),
-    resolve: {
-        alias: {
-            '@res': path.resolve(__dirname, 'src/res'),
-        },
-        extensions: [
-            '.js', '.jsx', '.ts', '.tsx'
-        ]
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new CopyWebpackPlugin({
-            patterns: [
+    let devPlugins = [];
+    if (isDev) {
+        devPlugins = [
+            new EslintWebpackPlugin(
                 {
-                    from: path.resolve(__dirname, 'src/favicon-32x32.png'),
-                    to: path.resolve(__dirname, 'build')
+                    extensions: ['js', 'mjs', 'jsx', 'ts', 'tsx']
+                }
+            ),
+        ]
+    }
+
+    let prodPlugins = [];
+    if (isProd) {
+        /* еще ничего нет */
+        prodPlugins = [
+            // new WebpackBundleAnalyzer()
+        ];
+    }
+
+    return {
+        /* Настраиваем среду выполнения через переменную окружения или параметр запуска приложения */
+        mode: 'development',
+        entry: {
+            common: './src/index.jsx',
+            lib: './src/stat.js'
+        },
+        output: {
+            filename: filename('js'),
+            path: path.resolve(__dirname, 'build')
+        },
+        devtool: isDev && 'source-map',
+        optimization: getOptimization(),
+        resolve: {
+            alias: {
+                '@res': path.resolve(__dirname, 'src/res'),
+            },
+            extensions: [
+                '.js', '.jsx', '.ts', '.tsx'
+            ]
+        },
+        plugins: [
+            new webpack.DefinePlugin({
+                $BASE_URL: JSON.stringify(env.remoteBaseUrl || "/")
+            }),
+            new CleanWebpackPlugin(),
+            new CopyWebpackPlugin({
+                patterns: [
+                    {
+                        from: path.resolve(__dirname, 'src/favicon-32x32.png'),
+                        to: path.resolve(__dirname, 'build')
+                    }
+                ]
+            }),
+            new MiniCssExtractPlugin({
+                filename: filename('css')
+            }),
+            new HtmlWebpackPlugin({
+                filename: 'index.html',
+                template: './src/index.tmpl.html',
+                minify: {
+                    collapseWhitespace: !isDev
+                }
+            }),
+            ...devPlugins,
+            ...prodPlugins
+        ],
+        module: {
+            rules: [
+                {
+                    test: /\.css$/,
+                    use: [
+                        {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {}
+                        },
+                        'css-loader'
+                    ]
+                },
+                {
+                    test: /\.styl$/,
+                    use: [
+                        /* extract styles to separate .css file */
+                        {
+                            loader: MiniCssExtractPlugin.loader,
+                            options: {}
+                        },
+                        /* import .css as JS object at import */
+                        'css-loader',
+                        /* .styl -> .css */
+                        'stylus-loader'
+                    ]
+                },
+                {
+                    test: /\.m?js$/,
+                    exclude: /node_modules/,
+                    use: getJsLoaders()
+                },
+                {
+                    test: /\.ts$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: getBabelOptions(
+                            '@babel/preset-typescript'
+                        )
+                    }
+                },
+                {
+                    test: /\.jsx$/,
+                    exclude: /node_modules/,
+                    use: {
+                        loader: 'babel-loader',
+                        options: getBabelOptions(
+                            '@babel/preset-react'
+                        )
+                    }
+                },
+                {
+                    test: /\.(jpe?g|png)$/,
+                    /* в webpack 5 это встроенный модуль, https://webpack.js.org/guides/asset-modules/ */
+                    type: 'asset/resource'
+                },
+                {
+                    test: /\.xml$/,
+                    loader: 'xml-loader'
+                },
+                {
+                    test: /\.csv$/,
+                    loader: 'csv-loader',
                 }
             ]
-        }),
-        new MiniCssExtractPlugin({
-            filename: filename('css')
-        }),
-        new HtmlWebpackPlugin({
-            filename: 'index.html',
-            template: './src/index.tmpl.html',
-            minify: {
-                collapseWhitespace: !isDev
-            }
-        }),
-        ...devPlugins,
-        ...prodPlugins
-    ],
-    module: {
-        rules: [
-            {
-                test: /\.css$/,
-                use: [
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {}
-                    },
-                    'css-loader'
-                ]
-            },
-            {
-                test: /\.styl$/,
-                use: [
-                    /* extract styles to separate .css file */
-                    {
-                        loader: MiniCssExtractPlugin.loader,
-                        options: {}
-                    },
-                    /* import .css as JS object at import */
-                    'css-loader',
-                    /* .styl -> .css */
-                    'stylus-loader'
-                ]
-            },
-            {
-                test: /\.m?js$/,
-                exclude: /node_modules/,
-                use: getJsLoaders()
-            },
-            {
-                test: /\.ts$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: getBabelOptions(
-                        '@babel/preset-typescript'
-                    )
-                }
-            },
-            {
-                test: /\.jsx$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader",
-                    options: getBabelOptions(
-                        '@babel/preset-react'
-                    )
-                }
-            },
-            {
-                test: /\.(jpe?g|png)$/,
-                /* в webpack 5 это встроенный модуль, https://webpack.js.org/guides/asset-modules/ */
-                type: 'asset/resource'
-            },
-            {
-                test: /\.xml$/,
-                loader: 'xml-loader'
-            },
-            {
-                test: /\.csv$/,
-                loader: 'csv-loader',
-            }
-        ]
-    },
-    devServer: {
-        port: 3333,
-        hot: true,
-        historyApiFallback: true,
-        /* для статики отдельно используем Live reload */
-        watchFiles: [
-            'src/**/*.html'
-        ],
+        },
+        devServer: {
+            port: 3333,
+            hot: true,
+            historyApiFallback: true,
+            /* для статики отдельно используем Live reload */
+            watchFiles: [
+                'src/**/*.html'
+            ],
+        }
     }
 }
 
