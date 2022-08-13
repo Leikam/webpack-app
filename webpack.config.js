@@ -82,6 +82,14 @@ module.exports = (env) => {
                     collapseWhitespace: !isDev
                 }
             }),
+            /* 404.html для Github Pages, что бы сохранить рендер страницы по прямому переходу на урл / рефреш */
+            new HtmlWebpackPlugin({
+                filename: '404.html',
+                template: './src/index.tmpl.html',
+                minify: {
+                    collapseWhitespace: !isDev
+                }
+            }),
             ...devPlugins,
             ...prodPlugins
         ],
