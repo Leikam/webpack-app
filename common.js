@@ -315,6 +315,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom_client__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react-dom/client */ "./node_modules/react-dom/client.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/index.js");
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router/index.js");
+/*global $BASE_URL*/
 
 
 
@@ -323,12 +324,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+console.log("\u2013\u2013\u2013> window.remoteBaseUrl", webpack-app);
 (0,react_dom_client__WEBPACK_IMPORTED_MODULE_6__.createRoot)(document.getElementById('app')).render(
 /*#__PURE__*/
 
-/* basename fro github pages */
+/* basename for github pages */
 react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_7__.BrowserRouter, {
-  basename: "webpack-app"
+  basename: webpack-app
 }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Routes, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_8__.Route, {
   path: "/",
   element: /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_5___default().createElement(_projects_App_js__WEBPACK_IMPORTED_MODULE_0__["default"], null)
