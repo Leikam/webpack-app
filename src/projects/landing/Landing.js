@@ -1,7 +1,7 @@
 import React from 'react';
-import './EmptyPage.styl';
+import './Landing.styl';
 
-export function EmptyPage() {
+export function Landing() {
     return (
         <div className='wrapper'>
             <div className="form">

@@ -86,6 +86,10 @@ body:after {
 }
 
 @media (max-width: $promo_minWidth + $wrapper_padding * 2 - 1) {
+	.wrapper {
+		flex-direction: column;
+		flex-wrap: nowrap;
+	}
 	.promo {
 		min-width: 100%;
 	}
