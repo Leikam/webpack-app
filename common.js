@@ -324,7 +324,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-console.log("\u2013\u2013\u2013> window.remoteBaseUrl", "webpack-app");
 (0,react_dom_client__WEBPACK_IMPORTED_MODULE_6__.createRoot)(document.getElementById('app')).render(
 /*#__PURE__*/
 
